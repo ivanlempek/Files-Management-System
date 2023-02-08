@@ -1,0 +1,57 @@
+@model IEnumerable<NOVAteste.Models.Arquivo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Sistema de armazenagem de dados 1.0</h2>
+<br />
+
+<p>
+    <a asp-action="Create"><button class="btn btn-primary">Novo Arquivo</button></a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+               Download
+            </th>
+            <th>
+                Editar
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <th>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.Status)
+            </th>
+            <td>
+                <a asp-action="Download" asp-route-id="@item.Id" target="_blank">Visualizar</a>
+            </td>
+                <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
